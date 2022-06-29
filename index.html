@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- form encr 
+hash table -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  </head>
+  <body bgcolor="gray">
+    <script>
+      function myfunc(event) {
+        const user ={
+            name : name,
+            hello :"ok",
+            password : psd
+        }
+        event.preventDefault();
+        var name = document.getElementById("name").value;
+        var psd = document.getElementById("psd").value;
+        let string = JSON.stringify(user);
+
+        const secret = "Hello123";
+        let encrypted = CryptoJS.AES.encrypt(string, secret).toString();
+        var bytes = CryptoJS.AES.decrypt(encrypted, secret);
+       
+        console.log(encrypted);
+    
+        
+        
+
+        localStorage.setItem("user", encrypted);
+        var originalText = bytes.toString(CryptoJS.enc.Utf8);
+        console.log(originalText);
+      }
+
+      // localStorage.setItem('user- decrypt' , user.name );
+      // localStorage.setItem('user- decrypt2' , user.address);
+    </script>
+
+    <form text-align="center" onSubmit="myfunc(event)">
+      <div>
+        <label> Name :</label>
+        <input type="text" id="name" required />
+        <div>
+          <label> Password : </label>
+          <input type="text" id="psd" required />
+        </div>
+
+        <div>
+          <input type="submit" />
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
