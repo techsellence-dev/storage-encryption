@@ -10,16 +10,17 @@ var CryptoJS = require("crypto-js");
 
 function Myhash(event) {
   event.preventDefault();
+  var namelabel = document.getElementById("name").value;
+  var psdlabel = document.getElementById("psd").value;
   const user = {
-    name :{name}.toString(),
-    psd : {psd}.toString(),
+    name :namelabel,
+    psd : psdlabel,
   };
+console.log(user)
 
-
-  var name = document.getElementById("name").value;
-  var psd = document.getElementById("psd").value;
+  
   let string = JSON.stringify(user);
-
+  console.log(string);
   const secret = "Hello123";
   let encrypted = CryptoJS.AES.encrypt(string, secret).toString();
   var bytes = CryptoJS.AES.decrypt(encrypted, secret);
